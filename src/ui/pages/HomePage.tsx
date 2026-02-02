@@ -29,9 +29,7 @@ export const HomePage = () => {
               />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            簡単な操作
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">簡単な操作</h3>
           <p className="text-gray-600 dark:text-gray-300">
             直感的なインターフェースで、誰でも簡単にタスクを管理できます
           </p>

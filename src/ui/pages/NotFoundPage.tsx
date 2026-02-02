@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const NotFoundPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="text-center space-y-6 p-8 max-w-md">
         <div className="space-y-2">
-          <h1 className="text-9xl font-bold text-gray-200 dark:text-gray-700">
-            404
-          </h1>
+          <h1 className="text-9xl font-bold text-gray-200 dark:text-gray-700">404</h1>
           <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-200">
             ページが見つかりません
           </h2>
