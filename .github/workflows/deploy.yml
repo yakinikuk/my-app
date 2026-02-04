@@ -11,6 +11,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # GitHub Pagesの設定変更に必要
+  actions: read
+  security-events: read
 
 # 同時実行を防ぐ
 concurrency:
@@ -34,7 +37,13 @@ jobs:
           cache: 'npm'
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
+        with:
+          # GitHub Pagesが無効な場合は自動的に有効化
+          enablement: true
+          # トークン権限を明示的に指定
+          token: ${{ github.token }}
 
       - name: Install dependencies
         run: npm ci
@@ -45,6 +54,7 @@ jobs:
       - name: Build application
         env:
           GITHUB_ACTIONS: true
+          GITHUB_PAGES: true
         run: npm run build
 
       - name: Upload artifact for Pages
