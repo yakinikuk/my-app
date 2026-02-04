@@ -7,6 +7,25 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
-    globals: true, // describe/it/expect をグローバルで使いたい場合
+    globals: true,
+    coverage: {
+      // カバレッジの対象を明示的に指定
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        'src/**/*.test.{ts,tsx}',
+        'src/**/*.spec.{ts,tsx}',
+        'src/test/**',
+        'src/**/types.ts',
+      ],
+      // カバレッジの閾値を設定
+      thresholds: {
+        global: {
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80,
+        },
+      },
+    },
   },
 });
