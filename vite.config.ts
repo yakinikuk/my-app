@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GITHUB_PAGES_BASE_URL || (process.env.GITHUB_ACTIONS ? '/my-app/' : '/'),
+  base: process.env.NODE_ENV === 'production' ? '/my-app/' : '/',
   test: {
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
