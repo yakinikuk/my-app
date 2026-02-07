@@ -106,9 +106,10 @@ jobs:
         if: env.CODECOV_TOKEN
         uses: codecov/codecov-action@v4
         with:
-          file: ./coverage/coverage-final.json
+          files: ./coverage/coverage-final.json
           flags: unittests
           name: codecov-umbrella
+          verbose: true
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -126,7 +127,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Restore node_modules
         uses: actions/cache/restore@v4
