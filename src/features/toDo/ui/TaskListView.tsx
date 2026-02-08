@@ -37,7 +37,7 @@ export const ToDoTaskListView = () => {
           id: 't2',
           title: '牛乳を買う',
           dueLabel: '02/07 18:00',
-          status: '未着手',
+          status: '完了',
         },
       ],
     },

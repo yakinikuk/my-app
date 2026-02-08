@@ -22,9 +22,22 @@ const statusPillClassName = (status: TaskStatus) => {
 };
 
 export const ToDoTaskListItem = ({ task }: { task: TaskListItemTask }) => {
+  const isCompleted = task.status === '完了';
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 flex items-center gap-4">
-      <div className="w-8 h-8 rounded-full border-2 border-gray-200 bg-white" aria-hidden="true" />
+      <div
+        className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${
+          isCompleted ? 'border-green-500 bg-green-500' : 'border-gray-200 bg-white'
+        }`}
+        aria-hidden="true"
+      >
+        {isCompleted && (
+          <svg viewBox="0 0 16 12" className="w-4 h-3 text-white" fill="none" aria-hidden="true">
+            <path d="M1 6.5L5.5 11L15 1" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        )}
+      </div>
 
       <div className="flex-1">
         <div className="text-xl font-semibold text-gray-900">{task.title}</div>
