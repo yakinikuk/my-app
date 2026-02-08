@@ -1,5 +1,6 @@
 import { ToDoKanbanTaskCard, type KanbanTask } from './KanbanTaskCard';
 import { ToDoTopBar } from './TopBar';
+import { TODO_MESSAGES } from '../messages';
 
 type TaskStatus = '未着手' | '進行中' | '完了';
 
@@ -44,16 +45,31 @@ export const ToDoKanbanBoardView = () => {
         },
       ],
     },
+    {
+      id: 'done',
+      status: '完了',
+      count: 1,
+      tasks: [
+        {
+          id: 'k3',
+          groupLabel: 'Health',
+          groupPillClassName: 'bg-pink-100 text-pink-700',
+          title: 'ジムでトレーニング',
+          description: '新しいトレーニングメニューを試す。',
+          dueLabel: '02/05',
+        },
+      ],
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50">
       <ToDoTopBar />
 
       <div className="px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">かんばんボード</h1>
-          <p className="mt-2 text-gray-500">3 個のタスクが見つかりました</p>
+          <h1 className="text-4xl font-bold text-gray-900">{TODO_MESSAGES.screen.kanbanBoard}</h1>
+          <p className="mt-2 text-gray-500">3 {TODO_MESSAGES.message.taskCountsFound}</p>
         </div>
 
         <div className="flex gap-10 overflow-x-auto pb-6">
@@ -75,7 +91,7 @@ export const ToDoKanbanBoardView = () => {
                   type="button"
                   className="w-full h-14 rounded-2xl border-2 border-dashed border-gray-200 text-gray-400 font-semibold"
                 >
-                  + タスクを追加
+                  + {TODO_MESSAGES.button.add}
                 </button>
               </div>
             </section>

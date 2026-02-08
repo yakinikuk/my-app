@@ -58,6 +58,8 @@ const PlusIcon = ({ className }: { className?: string }) => {
   );
 };
 
+import { TODO_MESSAGES } from '../messages';
+
 export const ToDoTopBar = ({ placeholder }: { placeholder?: string }) => {
   return (
     <div className="flex items-center gap-4 px-6 py-4 bg-white border-b border-gray-100">
@@ -68,7 +70,7 @@ export const ToDoTopBar = ({ placeholder }: { placeholder?: string }) => {
           </div>
           <input
             className="w-full h-12 pl-12 pr-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 placeholder:text-gray-400 outline-none"
-            placeholder={placeholder ?? 'タスクを検索...'}
+            placeholder={placeholder ?? TODO_MESSAGES.search.placeholder}
             readOnly
             aria-label="検索"
           />
@@ -78,7 +80,7 @@ export const ToDoTopBar = ({ placeholder }: { placeholder?: string }) => {
       <button
         type="button"
         className="relative w-10 h-10 rounded-xl bg-white border border-gray-100 text-gray-600 flex items-center justify-center"
-        aria-label="通知"
+        aria-label={TODO_MESSAGES.search.notificationTooltip}
       >
         <BellIcon />
         <span
@@ -90,10 +92,10 @@ export const ToDoTopBar = ({ placeholder }: { placeholder?: string }) => {
       <button
         type="button"
         className="h-12 px-5 rounded-2xl bg-blue-600 text-white font-semibold flex items-center gap-2"
-        aria-label="新規作成"
+        aria-label={TODO_MESSAGES.button.create}
       >
         <PlusIcon className="text-white" />
-        新規作成
+        {TODO_MESSAGES.button.create}
       </button>
     </div>
   );

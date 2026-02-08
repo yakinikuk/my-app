@@ -1,13 +1,18 @@
+import { useState } from 'react';
 import { PencilIconButton, TrashIconButton } from '../../../shared/ui/component';
 import { CalendarIcon } from '../../../shared/ui/icon';
+import { ToDoTaskEditModal } from './TaskEditModal';
 
-export type TaskStatus = '未着手' | '進行中' | '完了';
+export type TaskStatus = '未着手' | '進行中' | '完了' | '保存';
 
 export type TaskListItemTask = {
   id: string;
   title: string;
   dueLabel: string;
   status: TaskStatus;
+  description?: string;
+  groupId?: string;
+  learned?: string;
 };
 
 const statusPillClassName = (status: TaskStatus) => {
@@ -18,11 +23,27 @@ const statusPillClassName = (status: TaskStatus) => {
       return 'bg-gray-100 text-gray-700';
     case '完了':
       return 'bg-green-100 text-green-700';
+    case '保存':
+      return 'bg-purple-100 text-purple-700';
   }
 };
 
 export const ToDoTaskListItem = ({ task }: { task: TaskListItemTask }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isCompleted = task.status === '完了';
+
+  const handleSave = (updatedTask: {
+    id: string;
+    title: string;
+    description?: string;
+    status: TaskStatus;
+    groupId?: string;
+    deadline?: string;
+    learned?: string;
+  }) => {
+    // TODO: 実際のDB更新処理を実装
+    console.warn('タスクを更新:', updatedTask);
+  };
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 flex items-center gap-4">
@@ -55,9 +76,24 @@ export const ToDoTaskListItem = ({ task }: { task: TaskListItemTask }) => {
       </div>
 
       <div className="flex items-center gap-2">
-        <PencilIconButton aria-label="編集" />
+        <PencilIconButton aria-label="編集" onClick={() => setIsModalOpen(true)} />
         <TrashIconButton aria-label="削除" />
       </div>
+
+      <ToDoTaskEditModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        task={{
+          id: task.id,
+          title: task.title,
+          description: task.description,
+          status: task.status,
+          groupId: task.groupId,
+          learned: task.learned,
+          deadline: undefined, // TODO: dueLabel から変換
+        }}
+        onSave={handleSave}
+      />
     </div>
   );
 };

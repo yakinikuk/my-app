@@ -1,5 +1,6 @@
 import { ToDoTaskListItem, type TaskListItemTask } from './TaskListItem';
 import { ToDoTopBar } from './TopBar';
+import { TODO_MESSAGES } from '../messages';
 
 type Task = TaskListItemTask;
 
@@ -46,13 +47,15 @@ export const ToDoTaskListView = () => {
   const taskCount = groups.reduce((sum, group) => sum + group.tasks.length, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50">
       <ToDoTopBar />
 
       <div className="px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">タスク一覧</h1>
-          <p className="mt-2 text-gray-500">{taskCount} 個のタスクが見つかりました</p>
+          <h1 className="text-4xl font-bold text-gray-900">{TODO_MESSAGES.screen.taskList}</h1>
+          <p className="mt-2 text-gray-500">
+            {taskCount} {TODO_MESSAGES.message.taskCountsFound}
+          </p>
         </div>
 
         <div className="space-y-10">

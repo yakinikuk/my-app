@@ -1,5 +1,6 @@
 import React from 'react';
 import { BoardIcon, ListIcon } from '../../../shared/ui/icon';
+import { TODO_MESSAGES } from '../messages';
 
 type ActiveView = 'list' | 'board';
 
@@ -18,12 +19,12 @@ type GroupItem = {
 export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }) => {
   const navItems: NavItem[] = [
     {
-      label: 'リスト表示',
+      label: TODO_MESSAGES.nav.listView,
       icon: <ListIcon className="text-blue-600" />,
       isActive: activeView === 'list',
     },
     {
-      label: 'ボード表示',
+      label: TODO_MESSAGES.nav.boardView,
       icon: <BoardIcon className="text-gray-500" />,
       isActive: activeView === 'board',
     },
@@ -39,7 +40,7 @@ export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }
   ];
 
   return (
-    <aside className="w-80 h-screen bg-white border-r border-gray-100 px-6 py-6">
+    <aside className="w-80 h-screen bg-white border-r border-gray-100 px-6 py-6 overflow-y-auto">
       <div className="flex items-center gap-3 mb-10">
         <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-semibold text-xl">
           T
@@ -64,7 +65,7 @@ export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }
         ))}
       </nav>
 
-      <div className="text-sm font-semibold text-gray-400 mb-3">グループ</div>
+      <div className="text-sm font-semibold text-gray-400 mb-3">{TODO_MESSAGES.nav.groups}</div>
       <div className="space-y-2" aria-label="グループ一覧">
         {groupItems.map((group) => (
           <div
