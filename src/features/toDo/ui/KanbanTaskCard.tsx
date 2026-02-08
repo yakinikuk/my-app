@@ -1,5 +1,5 @@
-import { CalendarIcon } from '../../../shared/ui/icon';
 import { PencilIconButton, TrashIconButton } from '../../../shared/ui/component';
+import { CalendarIcon } from '../../../shared/ui/icon';
 
 export type KanbanTask = {
   id: string;
