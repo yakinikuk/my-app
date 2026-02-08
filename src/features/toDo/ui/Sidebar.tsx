@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BoardIcon, ListIcon } from '../../../shared/ui/icon';
 import { TODO_MESSAGES } from '../messages';
+import { SidebarGroupItem } from './SidebarGroupItem';
 
 type ActiveView = 'list' | 'board';
 
@@ -17,6 +18,15 @@ type GroupItem = {
 };
 
 export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }) => {
+  const [groupItems, setGroupItems] = useState<GroupItem[]>([
+    { label: 'すべて', dotClassName: 'bg-gray-400', isActive: true },
+    { label: '仕事', dotClassName: 'bg-blue-500' },
+    { label: 'プライベート', dotClassName: 'bg-purple-500' },
+    { label: '買い物', dotClassName: 'bg-green-500' },
+    { label: '健康', dotClassName: 'bg-pink-500' },
+    { label: 'その他', dotClassName: 'bg-gray-400' },
+  ]);
+
   const navItems: NavItem[] = [
     {
       label: TODO_MESSAGES.nav.listView,
@@ -30,14 +40,9 @@ export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }
     },
   ];
 
-  const groupItems: GroupItem[] = [
-    { label: 'すべて', dotClassName: 'bg-gray-400', isActive: true },
-    { label: '仕事', dotClassName: 'bg-blue-500' },
-    { label: 'プライベート', dotClassName: 'bg-purple-500' },
-    { label: '買い物', dotClassName: 'bg-green-500' },
-    { label: '健康', dotClassName: 'bg-pink-500' },
-    { label: 'その他', dotClassName: 'bg-gray-400' },
-  ];
+  const handleDeleteGroup = (label: string) => {
+    setGroupItems((prev) => prev.filter((group) => group.label !== label));
+  };
 
   return (
     <aside className="w-80 h-screen bg-white border-r border-gray-100 px-6 py-6 overflow-y-auto">
@@ -68,17 +73,14 @@ export const ToDoSidebar = ({ activeView = 'list' }: { activeView?: ActiveView }
       <div className="text-sm font-semibold text-gray-400 mb-3">{TODO_MESSAGES.nav.groups}</div>
       <div className="space-y-2" aria-label="グループ一覧">
         {groupItems.map((group) => (
-          <div
+          <SidebarGroupItem
             key={group.label}
-            className={
-              group.isActive
-                ? 'flex items-center gap-3 px-4 py-3 rounded-2xl bg-gray-100 text-gray-900 font-semibold'
-                : 'flex items-center gap-3 px-4 py-3 rounded-2xl text-gray-600 font-semibold'
-            }
-          >
-            <span className={`w-3 h-3 rounded-full ${group.dotClassName}`} aria-hidden="true" />
-            <span className="text-lg">{group.label}</span>
-          </div>
+            label={group.label}
+            dotClassName={group.dotClassName}
+            isActive={group.isActive}
+            onDelete={handleDeleteGroup}
+            isDeleteable={group.label !== 'すべて'}
+          />
         ))}
       </div>
     </aside>
