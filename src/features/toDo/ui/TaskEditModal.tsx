@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { TaskStatus } from './TaskListItem';
 import { TODO_MESSAGES } from '../messages';
+import type { TaskStatus } from './TaskListItem';
 
 type TaskEditModalProps = {
   isOpen: boolean;
@@ -183,7 +183,10 @@ export const ToDoTaskEditModal = ({ isOpen, onClose, task, onSave }: TaskEditMod
 
           {/* 学んだこと */}
           <div>
-            <label htmlFor="task-learned" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label
+              htmlFor="task-learned"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
               {TODO_MESSAGES.form.learned}
             </label>
             <textarea

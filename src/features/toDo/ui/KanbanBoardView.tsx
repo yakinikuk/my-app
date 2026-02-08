@@ -1,6 +1,6 @@
+import { TODO_MESSAGES } from '../messages';
 import { ToDoKanbanTaskCard, type KanbanTask } from './KanbanTaskCard';
 import { ToDoTopBar } from './TopBar';
-import { TODO_MESSAGES } from '../messages';
 
 type TaskStatus = '未着手' | '進行中' | '完了';
 

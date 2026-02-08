@@ -1,6 +1,6 @@
+import { TODO_MESSAGES } from '../messages';
 import { ToDoTaskListItem, type TaskListItemTask } from './TaskListItem';
 import { ToDoTopBar } from './TopBar';
-import { TODO_MESSAGES } from '../messages';
 
 type Task = TaskListItemTask;
 

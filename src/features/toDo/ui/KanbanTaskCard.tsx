@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { PencilIconButton, TrashIconButton } from '../../../shared/ui/component';
 import { CalendarIcon } from '../../../shared/ui/icon';
-import type { TaskStatus } from './TaskListItem';
 import { ToDoTaskEditModal } from './TaskEditModal';
+import type { TaskStatus } from './TaskListItem';
 
 export type KanbanTask = {
   id: string;
